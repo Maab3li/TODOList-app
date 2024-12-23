@@ -1,12 +1,11 @@
-import { useState } from "react";
-import MyTODO from "./MyTODO";
+import TODOList from "./TODOList";
 
 
 function App() {
   
   return (
     <div>
-    <MyTODO />
+    <TODOList />
     </div>
   )
 }

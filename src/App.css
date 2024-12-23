@@ -1,4 +1,6 @@
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Roboto+Slab:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap');
 
@@ -18,10 +20,15 @@ body {
   margin-top: 5%;
 }
 
+.input-div {
+  margin-top: 2%;
+}
+
 h1 {
   font-size: 3rem;
-  color: black;
+  color: rgb(95, 47, 1);
   border-width: 2px;
+  font-weight: 600;
   border-color: #FFF;
   background-color: rgb(255, 145, 0);
   font-style: italic;
@@ -60,6 +67,12 @@ input {
   min-height: 40px;
   font-size: 1.6rem;
   border: 2px solid gray;
+  color: black;
+  padding: 3px;
+}
+
+.add-btn, .reset-btn {
+  padding: 8px;
 }
 
 .add-btn {
@@ -87,11 +100,26 @@ input {
 
 .delete-btn {
   background-color: rgb(231, 0, 0);
-  color: aliceblue;
+  color: rgb(4, 37, 66);
+}
+
+.delete-btn:hover {
+  background-color: pink;
+  color: #FFF;
 }
 
 .moveup-btn, .movedown-btn {
-  background-color: rgb(193, 255, 255);
+  background-color: rgb(0, 124, 124);
+}
+
+.movedown-btn:hover {
+  background-color: rgb(177, 255, 255);
+  color: #FFF;
+}
+
+.moveup-btn:hover{
+  background-color: rgb(177, 255, 255);
+  color: #FFF;
 }
 
 li {
@@ -104,7 +132,7 @@ li {
   display: flex;
   background-color: white;
   margin: 10px;
-  border-radius: 5px;
+  border-radius: 40px;
 }
 
 ol {
@@ -148,5 +176,16 @@ ol {
 @media(max-width:532px) {
   .add-btn, .reset-btn, input,.delete-btn,.movedown-btn,.moveup-btn,.text {
     font-size: 1.1rem;
+  }
+}
+@media(max-width:430px) {
+  li {
+    max-width: 100%;
+  }
+  .input-div {
+    display: flex;
+  }
+  input{
+    flex: 10;
   }
 }
