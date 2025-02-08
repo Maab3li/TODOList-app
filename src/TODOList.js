@@ -1,23 +1,31 @@
 import { useEffect, useState } from "react"
 import { DragDropContext,Droppable, Draggable } from "react-beautiful-dnd"
 import "./App.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle, faCircleXmark, faSquare } from "@fortawesome/free-regular-svg-icons"
+import { faSquareFull } from "@fortawesome/free-solid-svg-icons/faSquareFull"
+import { faSquareBinary } from "@fortawesome/free-solid-svg-icons"
 
 function TODOList() {
 
+  function themeToggler() {
+    
+  }
+
   const [newTask,setNewTask] = useState('')
   const[taskList,setTaskList] = useState([])
-  const [nextId,setNextId] = useState(1)
+  const [taskId,setTaskId] = useState(1)
 
   useEffect(()=> {
-    const data = localStorage.getItem('goals')
+    const data = localStorage.getItem('tasks')
     if(data) {
       setTaskList(JSON.parse(data))
     }
     },[])
 
-  useEffect(()=> {
-    localStorage.setItem('goals', JSON.stringify(taskList))
-  },[taskList])
+    useEffect(()=> {
+      localStorage.setItem('tasks', JSON.stringify(taskList))
+    },[taskList])
 
   function handleInputChange(e) {
     setNewTask(e.target.value)
@@ -26,12 +34,13 @@ function TODOList() {
     function addTask() {
       if(newTask.trim() !== '') {
         const task = {
-          id:nextId,
-          text:newTask
+          id:taskId,
+          text:newTask,
+          isCompleted:false
         }
         setTaskList(t => [...t, task])
         setNewTask('')
-        setNextId(nextId + 1)
+        setTaskId(taskId + 1)
       }
     }
   
@@ -39,23 +48,7 @@ function TODOList() {
       const updatedTaskList = taskList.filter((__,i) => i !== index)
       setTaskList(updatedTaskList)
     }
-  
-    function moveTaskUp(index) {
-      if(index > 0) {
-        const updatedTaskList = [...taskList];
-        [updatedTaskList[index], updatedTaskList[index - 1]] = [updatedTaskList[index - 1], updatedTaskList[index]]
-        setTaskList(updatedTaskList)
-        }
-      }
-      
-    function moveTaskDown(index) {
-      const updatedTaskList = [...taskList];
-      if(index < updatedTaskList.length) {
-        [updatedTaskList[index], updatedTaskList[index + 1]] = [updatedTaskList[index +1], updatedTaskList[index]]
-        setTaskList(updatedTaskList)
-      }
-    }
-  
+
     function resetTasks() {
       setTaskList([])
     }
@@ -70,10 +63,18 @@ function TODOList() {
 
       setTaskList(items)
     }
-  
+
+    function completeTask(index) {
+      const updatedTaskList = [...taskList]
+      updatedTaskList[index].isCompleted = true
+      setTaskList(updatedTaskList)
+    }
+
+    
     return (
+      <div>
       <div className="mytodo-list">
-        <h1>TODO List</h1>
+        <h1 className="dark:text-white dark:bg-black">TODO List</h1>
         <div className="input-div">
         <input type="text" maxLength={40} placeholder="Enter a task..." onChange={handleInputChange} value={newTask} />
         <button type="button" className="btn add-btn" onClick={addTask}>Add Task</button>
@@ -84,13 +85,16 @@ function TODOList() {
             {(provided) => (
               <ol {...provided.droppableProps} ref={provided.innerRef}>
                 {taskList.map((task,index) => 
-                <Draggable key={task.id} draggableId={task.text} index={index}>
+                <Draggable key={task.id} draggableId={task.text} index={index} completeTask ={completeTask}>
                   {(provided) => (
                     <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} >
-                    <span className="text">{task.text}</span>
-                    <button className="btn delete-btn" onClick={() => deleteTask(index)}>X</button>
-                    <button className="btn moveup-btn" onClick={() => moveTaskUp(index)}>⬆️</button>
-                    <button className="btn movedown-btn" onClick={() => moveTaskDown(index)}>⬇️</button>
+                    <span className="text" style={{textDecoration:task.isCompleted?'line-through':''}}>{task.text}</span>
+                    <button className="btn complete-btn" disabled ={task.isCompleted} onClick={() => completeTask(index)}>
+                     <FontAwesomeIcon icon={faCheckCircle} />
+                    </button>
+                    <button className="btn delete-btn" onClick={() => deleteTask(index)}>
+                    <FontAwesomeIcon icon={faCircleXmark} />
+                    </button>
                   </li>  
                   )}
                 </Draggable>
@@ -100,11 +104,26 @@ function TODOList() {
             )}
         </Droppable>
         </DragDropContext>
+        
+        </div>
         </div>
       )
     }
 
+    
+
 
   export default TODOList
   
-  
+  /*
+  <ol>
+  {taskList.filter((task) => 
+    task.isCompleted === true
+  ).map((task,index) => 
+    <li key={task.id} text={task.text} completeTask={completeTask}>
+      <span className="text" style={{textDecoration:'line-through'}}> {task.text}{index} </span>
+      <button className="btn delete-btn" onClick={() => deleteTask(index)}>X</button>
+    </li>
+  )}
+</ol>
+*/
