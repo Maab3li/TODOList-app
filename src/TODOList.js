@@ -49,6 +49,23 @@ function TODOList() {
       setTaskList(updatedTaskList)
     }
 
+    
+    useEffect(() => {
+      const uncompletedTasks = []
+      const completedTasks =[]
+      for(let i =0;i<=taskList.length -1;i++) {
+        if(taskList[i].isCompleted === false) {
+          uncompletedTasks.push(taskList[i])
+        }
+        else {
+          completedTasks.push(taskList[i])
+        }
+      }
+      const orderedTasksList = uncompletedTasks.concat(completedTasks)
+      setTaskList(orderedTasksList)
+    },[taskList])
+    
+
     function resetTasks() {
       setTaskList([])
     }
