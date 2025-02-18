@@ -49,7 +49,7 @@ function TODOList() {
       setTaskList(updatedTaskList)
     }
 
-    
+   /* 
     useEffect(() => {
       const uncompletedTasks = []
       const completedTasks =[]
@@ -61,10 +61,16 @@ function TODOList() {
           completedTasks.push(taskList[i])
         }
       }
+     
       const orderedTasksList = uncompletedTasks.concat(completedTasks)
       setTaskList(orderedTasksList)
-    },[taskList])
+      },[taskList])
+      */
     
+      function handleThemeChange(e) {
+        document.querySelector('html').setAttribute('data-theme',`${e.target.value}`)
+      }
+
 
     function resetTasks() {
       setTaskList([])
@@ -91,6 +97,13 @@ function TODOList() {
     return (
       <div>
       <div className="mytodo-list">
+      <select className="theme-select" onChange={handleThemeChange}>
+        <option value='default'>select theme</option>
+        <option value='default'>default</option>
+        <option value='cupcake'>cupcake</option>
+        <option value='dark'>dark</option>
+        <option value='winter'>winter</option>
+      </select>
         <h1 className="dark:text-white dark:bg-black">TODO List</h1>
         <div className="input-div">
         <input type="text" maxLength={40} placeholder="Enter a task..." onChange={handleInputChange} value={newTask} />

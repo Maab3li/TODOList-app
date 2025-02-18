@@ -4,11 +4,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Roboto+Slab:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap');
 
-body {
-  background-color: rgb(252, 252, 166);
+html,body {
+  height: 100vh;
 }
 .mytodo-list {
-  background-color: rgb(252, 252, 166);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0);
   color: aliceblue;
   margin: 0 auto;
@@ -17,11 +16,111 @@ body {
   min-height: 100%;
   text-align: center;
   padding: 3px;
-  margin-top: 5%;
+}
+
+.theme-select {
+  position:absolute;
+  margin-top: 0;
+  margin-left: 35%;
+  color: black;
+}
+
+[data-theme='default'] li {
+  background-color: #FFF
+}
+[data-theme='default'] .text {
+  background-color: #FFF
+}
+[data-theme='default'] body {
+  height: 100%;
+  margin-top: 0;
+  background-color: rgb(255, 255, 115);
+}
+[data-theme='default'] .mytodo-list {
+  height: 100%;
+  margin-top: 0;
+  background-color: rgb(255, 255, 115);
+}
+
+
+[data-theme="cupcake"] h1 {
+  background-color: rgb(255, 228, 196);
+  color: rgb(240, 171, 88);
+}
+[data-theme="cupcake"] body {
+  background-color: rgb(255, 193, 116);
+}
+[data-theme="cupcake"] .mytodo-list {
+  background-color: rgb(255, 193, 116);
+}
+[data-theme="cupcake"] .add-btn {
+  background-color: rgb(56, 31, 0);
+  color: #FFF;
+}
+[data-theme="cupcake"] .reset-btn {
+  background-color: rgb(255, 140, 0);
+}
+[data-theme="cupcake"] li,.text{
+  background-color: rgb(247, 172, 82);
+}
+
+[data-theme ="dark"] .text,li {
+  background-color: black;
+  color: #FFF;
+}
+[data-theme ="dark"] h1 {
+  background-color: black;
+  color: rgb(253, 145, 21);
+}
+[data-theme ="dark"] body {
+  background-color: rgb(27, 24, 24);
+}
+[data-theme ="dark"] .mytodo-list {
+  background-color: rgb(27, 24, 24);
+}
+[data-theme ="dark"] .add-btn {
+  background-color: rgb(0, 32, 0);
+  color: #FFF;
+}
+[data-theme ="dark"] .reset-btn {
+  background-color: brown;
+  color: #FFF;
+}
+[data-theme ="dark"] select {
+  color: #FFF;
+}
+
+[data-theme ="winter"] h1 {
+  background-color: aqua;
+  color: rgb(221, 253, 253);
+}
+[data-theme ="winter"] body {
+  background-color: rgb(202, 255, 255);
+}
+[data-theme ="winter"] .mytodo-list {
+  background-color: rgb(202, 255, 255);
+}
+[data-theme ="winter"] .add-btn {
+  background-color: rgb(0, 55, 80);
+  color: #FFF;
+}
+[data-theme ="winter"] .reset-btn {
+  background-color: rgb(57, 121, 121);
+  color: #FFF;
+}
+[data-theme ="winter"] li {
+  background-color: rgb(127, 255, 249);
+}
+[data-theme ="winter"] .text {
+  background-color: rgb(127, 255, 249);
 }
 
 .input-div {
   margin-top: 2%;
+}
+
+select {
+  border: gray 1px solid;
 }
 
 h1 {
@@ -43,7 +142,6 @@ h1 {
 
 .text {
   color: black;
-  background-color: white;
   min-height: 28px ;
   padding: 7px 20px;
   border-radius: 5px;
@@ -84,20 +182,10 @@ input {
   font-weight: 700;
 } 
 
-.add-btn:hover {
-  background-color: green;
-  color: #FFF;
-}
-
 .reset-btn {
-  background-color: rgb(255, 255, 65);
+  background-color: rgb(247, 247, 26);
   color: rgb(39, 36, 36);
   font-weight: 700;
-}
-
-.reset-btn:hover {
-  background-color: yellow;
-  color: #FFF;
 }
 
 .delete-btn {
@@ -105,20 +193,11 @@ input {
   color: black;
 }
 
-.delete-btn:hover {
-  background-color: pink;
-  color: #FFF;
-}
-
 .complete-btn {
   background-color: rgb(84, 100, 60);
   color: black;
 }
 
-.complete-btn:hover{
-  background-color: rgb(215, 255, 155);
-  color: #FFF;
-}
 
 li {
   font-size: 1.6rem;
@@ -128,14 +207,13 @@ li {
   margin-left: 20%;
   align-items: center;
   display: flex;
-  background-color: white;
   margin: 10px;
   border-radius: 40px;
 }
 
 ol {
   padding: 0;
-  color:rgb(248, 248, 201) ;
+
 }
 
 @media(max-width:670px) {
