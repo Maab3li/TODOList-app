@@ -97,7 +97,7 @@ function TODOList() {
       <div className="mytodo-list">
         <div className="flex">
         <h1 className="dark:text-white dark:bg-black flex-1">TODO List 
-          <select className="theme-select" title="select theme" onChange={handleThemeChange}>
+          <select className="theme-select" title="change theme" onChange={handleThemeChange}>
         <option value='default'></option>
         <option value='default'>default</option>
         <option value='cupcake'>cupcake</option>
