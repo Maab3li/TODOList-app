@@ -98,6 +98,9 @@ html,body {
 [data-theme ="dark"] select {
   color: #FFF;
 }
+[data-theme ="dark"] input {
+  color: #FFF;
+}
 
 [data-theme ="winter"] h1 {
   background-color: aqua;
