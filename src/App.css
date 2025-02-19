@@ -92,7 +92,7 @@ html,body {
   color: #FFF;
 }
 [data-theme ="dark"] .reset-btn {
-  background-color: brown;
+  background-color: rgb(236, 59, 59);
   color: #FFF;
 }
 [data-theme ="dark"] select {
