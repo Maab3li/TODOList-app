@@ -10,6 +10,24 @@ function TODOList() {
   const[taskList,setTaskList] = useState([])
   const [taskId,setTaskId] = useState(1)
 
+  const [currentTheme,setCurrenTheme] = useState(document.querySelector('html').getAttribute('data-theme'))
+
+  useEffect(() => {
+    const newtheme = localStorage.getItem('currenttheme')
+    if(newtheme) {
+    setCurrenTheme(JSON.parse(newtheme))
+    }
+  },[])
+
+  useEffect(() => {
+    document.querySelector('html').setAttribute('data-theme',currentTheme)
+    localStorage.setItem('currenttheme',JSON.stringify(currentTheme)) 
+  },[currentTheme])
+
+  console.log(currentTheme)
+
+  
+
   useEffect(()=> {
     const data = localStorage.getItem('tasks')
     if(data) {
@@ -63,6 +81,7 @@ function TODOList() {
     
       function handleThemeChange(e) {
         document.querySelector('html').setAttribute('data-theme',`${e.target.value}`)
+        setCurrenTheme(e.target.value)
       }
 
 
