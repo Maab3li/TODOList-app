@@ -3,8 +3,6 @@ import { DragDropContext,Droppable, Draggable } from "react-beautiful-dnd"
 import "./App.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faCircleXmark, faSquare } from "@fortawesome/free-regular-svg-icons"
-import { faSquareFull } from "@fortawesome/free-solid-svg-icons/faSquareFull"
-import { faSquareBinary } from "@fortawesome/free-solid-svg-icons"
 
 function TODOList() {
 
@@ -97,16 +95,19 @@ function TODOList() {
     return (
       <div>
       <div className="mytodo-list">
-      <select className="theme-select" onChange={handleThemeChange}>
-        <option value='default'>select theme</option>
+        <div className="flex">
+        <h1 className="dark:text-white dark:bg-black flex-1">TODO List 
+          <select className="theme-select" title="select theme" onChange={handleThemeChange}>
+        <option value='default'></option>
         <option value='default'>default</option>
         <option value='cupcake'>cupcake</option>
         <option value='dark'>dark</option>
         <option value='winter'>winter</option>
-      </select>
-        <h1 className="dark:text-white dark:bg-black">TODO List</h1>
+      </select></h1>
+        
+        </div>
         <div className="input-div">
-        <input type="text" maxLength={40} placeholder="Enter a task..." onChange={handleInputChange} value={newTask} />
+        <input type="text" className="input-text" maxLength={40} placeholder="Enter a task..." onChange={handleInputChange} value={newTask} />
         <button type="button" className="btn add-btn" onClick={addTask}>Add Task</button>
         <button type="reset" className="btn reset-btn" onClick={resetTasks}>Reset Tasks</button>
         </div>
