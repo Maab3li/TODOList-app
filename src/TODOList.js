@@ -2,13 +2,9 @@ import { useEffect, useState } from "react"
 import { DragDropContext,Droppable, Draggable } from "react-beautiful-dnd"
 import "./App.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle, faCircleXmark, faSquare } from "@fortawesome/free-regular-svg-icons"
+import { faCheckCircle, faCircleXmark } from "@fortawesome/free-regular-svg-icons"
 
 function TODOList() {
-
-  function themeToggler() {
-    
-  }
 
   const [newTask,setNewTask] = useState('')
   const[taskList,setTaskList] = useState([])
@@ -130,7 +126,6 @@ function TODOList() {
                   )}
                 </Draggable>
               )}
-              {provided.placeholder}
               </ol>
             )}
         </Droppable>
