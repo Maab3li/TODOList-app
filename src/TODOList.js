@@ -3,12 +3,15 @@ import { DragDropContext,Droppable, Draggable } from "react-beautiful-dnd"
 import "./App.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faCircleXmark } from "@fortawesome/free-regular-svg-icons"
+import Modal from "./Modal"
 
 function TODOList() {
 
   const [newTask,setNewTask] = useState('')
   const[taskList,setTaskList] = useState([])
   const [taskId,setTaskId] = useState(1)
+
+  const [openModal,setOpenModal] = useState(false)
 
   const [currentTheme,setCurrenTheme] = useState(document.querySelector('html').getAttribute('data-theme'))
 
@@ -124,7 +127,14 @@ function TODOList() {
         <div className="input-div">
         <input type="text" className="input-text" maxLength={40} placeholder="Enter a task..." onChange={handleInputChange} value={newTask} />
         <button type="button" className="btn add-btn" onClick={addTask}>Add Task</button>
-        <button type="reset" className="btn reset-btn" onClick={resetTasks}>Reset Tasks</button>
+        <button type="reset" className="btn reset-btn" onClick={() => taskList.length > 0 ?setOpenModal(true):null}>Reset Tasks</button>
+        <Modal open={openModal} onClose={() => setOpenModal(false)}>
+          <div className="text-center w-56 text-gray-600 font-bold">Are you sure you want to delete all tasks?</div>
+          <div className="justify-start items-start pt-4 justify-between">
+            <button className="bg-red-500 w-20 mr-2" onClick={() => {resetTasks();setOpenModal(false)}}>Yes</button>
+            <button className="w-20 shadow-lg text-black ml-2" onClick={() =>setOpenModal(false)}>Cancel</button>
+          </div>
+        </Modal>
         </div>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="tasks">

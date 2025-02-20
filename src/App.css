@@ -5,9 +5,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap');
 
 html,body {
-  height: max-content;
+  min-height: 100vh;
   max-width: 100%;
 }
+
 .mytodo-list {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0);
   color: aliceblue;
