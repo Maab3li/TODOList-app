@@ -129,7 +129,7 @@ function TODOList() {
         <button type="button" className="btn add-btn" onClick={addTask}>Add Task</button>
         <button type="reset" className="btn reset-btn" onClick={() => taskList.length > 0 ?setOpenModal(true):null}>Reset Tasks</button>
         <Modal open={openModal} onClose={() => setOpenModal(false)}>
-          <div className="text-center w-56 text-gray-600 font-bold">Are you sure you want to delete all tasks?</div>
+          <div className="text-center sm:w-16 md:w-56 text-gray-600 font-bold">Are you sure you want to delete all tasks?</div>
           <div className="justify-start items-start pt-4 justify-between">
             <button className="bg-red-500 w-20 mr-2" onClick={() => {resetTasks();setOpenModal(false)}}>Yes</button>
             <button className="w-20 shadow-lg text-black ml-2" onClick={() =>setOpenModal(false)}>Cancel</button>
