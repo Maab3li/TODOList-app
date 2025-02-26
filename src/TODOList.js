@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react"
+import { useEffect, useReducer, useState } from "react"
 import { DragDropContext,Droppable, Draggable } from "react-beautiful-dnd"
 import "./App.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faCircleXmark } from "@fortawesome/free-regular-svg-icons"
 import Modal from "./Modal"
+import tasksReducer, { initialTasks} from "./tasksReducer"
 
 function TODOList() {
+  const[nextId,setNextId] = useState(1)
+
+  const [tasks,dispatch] = useReducer(tasksReducer, initialTasks)
 
   const [newTask,setNewTask] = useState('')
   const[taskList,setTaskList] = useState([])
-  const [taskId,setTaskId] = useState(1)
 
   const [openModal,setOpenModal] = useState(false)
 
@@ -27,41 +30,35 @@ function TODOList() {
     localStorage.setItem('currenttheme',JSON.stringify(currentTheme)) 
   },[currentTheme])
 
-  console.log(currentTheme)
-
-  
-
   useEffect(()=> {
-    const data = localStorage.getItem('tasks')
-    if(data) {
-      setTaskList(JSON.parse(data))
-    }
-    },[])
+   const storedTasks = localStorage.getItem('Tasks')
+   return (JSON.parse(storedTasks))
+  },[])
 
     useEffect(()=> {
-      localStorage.setItem('tasks', JSON.stringify(taskList))
-    },[taskList])
+      localStorage.setItem('Tasks', JSON.stringify(tasks))
+    },[tasks])
 
   function handleInputChange(e) {
     setNewTask(e.target.value)
     }
 
     function addTask() {
-      if(newTask.trim() !== '') {
-        const task = {
-          id:taskId,
-          text:newTask,
-          isCompleted:false
-        }
-        setTaskList(t => [...t, task])
-        setNewTask('')
-        setTaskId(taskId + 1)
-      }
+       dispatch({
+        type:'added_task',
+        id:nextId,
+        text:newTask,
+        isCompleted:false
+       })
+      setNextId(nextId+1)
+      setNewTask('')
     }
   
-    function deleteTask(index) {
-      const updatedTaskList = taskList.filter((__,i) => i !== index)
-      setTaskList(updatedTaskList)
+    function deleteTask(taskId) {
+      dispatch({
+        type:'deleted_task',
+        id:taskId
+      })
     }
 
    /* 
@@ -140,7 +137,7 @@ function TODOList() {
           <Droppable droppableId="tasks">
             {(provided) => (
               <ol {...provided.droppableProps} ref={provided.innerRef}>
-                {taskList.map((task,index) => 
+                {tasks.map((task,index) => 
                 <Draggable key={task.id} draggableId={task.text} index={index} completeTask ={completeTask}>
                   {(provided) => (
                     <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} >
@@ -148,7 +145,7 @@ function TODOList() {
                     <button className="btn complete-btn" disabled ={task.isCompleted} onClick={() => completeTask(index)}>
                      <FontAwesomeIcon icon={faCheckCircle} />
                     </button>
-                    <button className="btn delete-btn" onClick={() => deleteTask(index)}>
+                    <button className="btn delete-btn" onClick={() => deleteTask(task.id)}>
                     <FontAwesomeIcon icon={faCircleXmark} />
                     </button>
                   </li>  
