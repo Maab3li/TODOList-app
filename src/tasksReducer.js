@@ -14,6 +14,11 @@ function tasksReducer(tasks,action) {
         case 'deleted_task' : {
             return tasks.filter((t) => t.id !== action.id)
         }
+        case 'completed_task' : {
+            const completed = tasks.filter((t) => t.id === action.id)
+            action.isCompleted = true
+            return tasks
+        }
     }
 }
 

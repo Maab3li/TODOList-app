@@ -100,10 +100,12 @@ function TODOList() {
       setTaskList(items)
     }
 
-    function completeTask(index) {
-      const updatedTaskList = [...taskList]
-      updatedTaskList[index].isCompleted = true
-      setTaskList(updatedTaskList)
+    function completeTask(id,isCompleted) {
+      dispatch({
+        type:'completed_task',
+        taskId:id,
+        isCompleted:isCompleted
+      })
     }
 
     
@@ -142,7 +144,7 @@ function TODOList() {
                   {(provided) => (
                     <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} >
                     <span className="text" style={{textDecoration:task.isCompleted?'line-through':''}}>{task.text}</span>
-                    <button className="btn complete-btn" disabled ={task.isCompleted} onClick={() => completeTask(index)}>
+                    <button className="btn complete-btn" disabled ={task.isCompleted} onClick={() => completeTask(task.id,task.isCompleted)}>
                      <FontAwesomeIcon icon={faCheckCircle} />
                     </button>
                     <button className="btn delete-btn" onClick={() => deleteTask(task.id)}>
