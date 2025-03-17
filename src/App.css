@@ -177,7 +177,7 @@ h1 {
 
 input {
   border-radius: 5px;
-  min-height: 40px;
+  height: 40px;
   font-size: 1.6rem;
   border: 2px solid gray;
   color: black;
@@ -204,11 +204,13 @@ input {
 .delete-btn {
   background-color: rgb(231, 0, 0);
   color: black;
+  width: 50px;
 }
 
 .complete-btn {
   background-color: rgb(84, 100, 60);
   color: black;
+  width: 50px;
 }
 
 
@@ -287,12 +289,21 @@ ol {
 @media(max-width:418px) {
   .reset-btn {
     font-size: .8rem;
+    height: max-content;
   }
   .add-btn {
     font-size: .8rem;
+    height: fit-content;
   }
   h1 {
     font-size: 30px;
+  }
+  .theme-select {
+    height: 30px;
+    width: 30px;
+  }
+  input {
+    height:min-content
   }
   li {
     font-size: 10px;

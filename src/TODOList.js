@@ -4,6 +4,7 @@ import "./App.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faCircleXmark } from "@fortawesome/free-regular-svg-icons"
 import Modal from "./Modal"
+import { faTrash } from "@fortawesome/free-solid-svg-icons"
 
 function TODOList() {
 
@@ -32,14 +33,14 @@ function TODOList() {
   
 
   useEffect(()=> {
-    const data = localStorage.getItem('tasks')
+    const data = localStorage.getItem('Tasks')
     if(data) {
       setTaskList(JSON.parse(data))
     }
     },[])
 
     useEffect(()=> {
-      localStorage.setItem('tasks', JSON.stringify(taskList))
+      localStorage.setItem('Tasks', JSON.stringify(taskList))
     },[taskList])
 
   function handleInputChange(e) {
@@ -149,7 +150,7 @@ function TODOList() {
                      <FontAwesomeIcon icon={faCheckCircle} />
                     </button>
                     <button className="btn delete-btn" onClick={() => deleteTask(index)}>
-                    <FontAwesomeIcon icon={faCircleXmark} />
+                    <FontAwesomeIcon icon={faTrash} />
                     </button>
                   </li>  
                   )}
