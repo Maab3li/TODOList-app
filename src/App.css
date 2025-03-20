@@ -128,6 +128,29 @@ html,body {
   background-color: rgb(127, 255, 249);
 }
 
+[data-theme="leaf"] body {
+  background-color: rgb(1, 41, 1);
+}
+[data-theme="leaf"] h1 {
+  background-color: rgb(73, 139, 73);
+  color: yellowgreen;
+}
+[data-theme="leaf"] .add-btn {
+  background-color: rgb(33, 104, 65);
+  color: #FFF;
+}
+[data-theme="leaf"] .reset-btn{
+  background-color: rgb(26, 175, 93);
+  color: #FFF;
+}
+[data-theme="leaf"] li {
+  background-color:rgb(184, 176, 30);
+}
+[data-theme="leaf"] .text {
+  background-color:rgb(184, 176, 30);
+  color: #FFF;
+}
+
 .input-div {
   margin-top: 2%;
 }

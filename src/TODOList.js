@@ -122,6 +122,7 @@ function TODOList() {
         <option value='cupcake'>cupcake</option>
         <option value='dark'>dark</option>
         <option value='winter'>winter</option>
+        <option value='leaf'>leaf</option>
       </select></h1>
         
         </div>
