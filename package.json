@@ -1,6 +1,6 @@
 {
   "name": "app",
-  "homepage": "https://maab3li.github.io/TODOList-app/",
+  "homepage": "https://maab3li.github.io/TODOList-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
