@@ -50,5 +50,10 @@
     "git-scripts": "^0.6.4",
     "surge": "^0.24.6",
     "tailwindcss": "^3.4.16"
+  },
+  "git": {
+  "scripts": {
+    "pre-push": "surge --project ./ --domain example-githooks.surge.sh"
+    }
   }
 }
