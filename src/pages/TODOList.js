@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { DragDropContext,Droppable, Draggable } from "react-beautiful-dnd"
-import "./App.css"
+import "../App.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle, faCircleXmark } from "@fortawesome/free-regular-svg-icons"
-import Modal from "./Modal"
+import { faCheckCircle } from "@fortawesome/free-regular-svg-icons"
+import Modal from "../components/Modal"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
 
 function TODOList() {
@@ -118,11 +118,12 @@ function TODOList() {
         <h1 className="dark:text-white dark:bg-black flex-1">TODO List 
           <select className="theme-select" title="change theme" onChange={handleThemeChange}>
         <option value='default'></option>
-        <option value='default'>default</option>
-        <option value='cupcake'>cupcake</option>
-        <option value='dark'>dark</option>
-        <option value='winter'>winter</option>
-        <option value='leaf'>leaf</option>
+        <option value='default'>Default</option>
+        <option value='cupcake'>Cupcake</option>
+        <option value='dark'>Dark</option>
+        <option value='winter'>Winter</option>
+        <option value='leaf'>Leaf</option>
+        <option value='purple'>Purple</option>
       </select></h1>
         
         </div>

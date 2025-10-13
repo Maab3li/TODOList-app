@@ -151,6 +151,29 @@ html,body {
   color: #FFF;
 }
 
+[data-theme="purple"] body {
+  background-color: rgb(105, 16, 105);
+}
+[data-theme="purple"] h1 {
+  background-color: rgb(244, 189, 255);
+  color: rgb(123, 57, 136);
+}
+[data-theme="purple"] .add-btn {
+  background-color: rgb(0, 0, 0);
+  color: #FFF;
+}
+[data-theme="purple"] .reset-btn{
+  background-color: rgb(88, 88, 88);
+  color: #FFF;
+}
+[data-theme="purple"] li {
+  background-color:rgb(210, 132, 255);
+}
+[data-theme="purple"] .text {
+  background-color:rgb(210, 132, 255);
+  color: #FFF;
+}
+
 .input-div {
   margin-top: 2%;
 }
